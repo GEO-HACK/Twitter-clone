@@ -52,21 +52,27 @@ function handleTweetBtnClick() {
     console.log(tweetInput.value);
 
     //the tweet object
-    let tweetObject= {
-        handle: `@Geoffrey`,
-        profilePic: `images/me.png`,
-        likes: 0,
-        retweets: 0,
-        tweetText: `${tweetInput.value}`,
-        replies: [],
-        isLiked: false,
-        isRetweeted: false,
-        uuid: uuidv4(),
+    if(tweetInput.value === ''){
+         return alert('Please enter a tweet')
+    }   
+    else if(tweetInput.value.length ) {
+        tweetsData.unshift({
+            handle: `@Geoffrey`,
+            profilePic: `images/me.png`,
+            likes: 0,
+            retweets: 0,
+            tweetText: `${tweetInput.value}`,
+            replies: [],
+            isLiked: false,
+            isRetweeted: false,
+            uuid: uuidv4(),
+        }
+        )
     }
-
-    tweetsData.push(tweetObject)
+  
     render();
     tweetInput.value = ''
+   
 }
 
 function getFeedHtml() {
